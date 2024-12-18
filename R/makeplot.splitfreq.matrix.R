@@ -42,15 +42,14 @@ makeplot.splitfreq.matrix <- function(chains, burnin = 0){
 
   if(all(asdsf  == 0)){
     print("No non-zero ASDSF values, skipping ASDSF tree")  
+    return(list("splitfreq.matrix" = splitfreq.matrix, "asdsf.tree" = NULL))
   }
   else{
 
     hc <- hclust(asdsf)
     asdsf.tree <- ggdendrogram(hc, rotate=TRUE, theme_dendro = FALSE) + ylab("Pairwise ASDSF") + xlab("")
-
+    return(list("splitfreq.matrix" = splitfreq.matrix, "asdsf.tree" = asdsf.tree))
   }
-
-  return(list("splitfreq.matrix" = splitfreq.matrix, "asdsf.tree" = asdsf.tree))
 
 }
 
